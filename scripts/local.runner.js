@@ -14,14 +14,14 @@ try {
   Nightwatch.bs_local = bs_local = new browserstack.Local();
 
   var localOptions = {
-    'key': process.env.BROWSERSTACK_ACCESS_KEY
+    'key': localConf['test_settings']['default']['desiredCapabilities']['browserstack.key']
   };
 
   /**
    * If the network requires proxy configuration for outbound connections,
    * set those here.
    */
-  var proxySettings = localConf['proxy'];
+  var proxySettings = localConf['proxy'] || {};
 
   for (var key in proxySettings) {
     var value = proxySettings[key];
