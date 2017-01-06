@@ -3,6 +3,13 @@ var browserstack = require('browserstack-local');
 nightwatch_config = {
   src_folders : [ "tests/local" ],
 
+  proxy: {
+    "host": "",
+    "port": "",
+    "user": "",
+    "pass": ""
+  },
+
   selenium : {
     "start_process" : false,
     "host" : "hub-cloud.browserstack.com",
