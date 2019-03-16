@@ -1,7 +1,7 @@
 nightwatch_config = {
   src_folders : [ "tests/single" ],
 
-  selenium : {
+  webdriver: {
     "start_process" : false,
     "host" : "hub-cloud.browserstack.com",
     "port" : 80
@@ -21,11 +21,13 @@ nightwatch_config = {
         browser: "chrome"
       }
     },
-    firefox: {
-      desiredCapabilities: {
-        browser: "firefox"
-      }
-    },
+    // disabling firefox because of
+    // https://github.com/nightwatchjs/nightwatch/issues/2046
+    // firefox: {
+    //   desiredCapabilities: {
+    //     browser: "firefox"
+    //   }
+    // },
     safari: {
       desiredCapabilities: {
         browser: "safari"
@@ -42,8 +44,8 @@ nightwatch_config = {
 // Code to support common capabilites
 for(var i in nightwatch_config.test_settings){
   var config = nightwatch_config.test_settings[i];
-  config['selenium_host'] = nightwatch_config.selenium.host;
-  config['selenium_port'] = nightwatch_config.selenium.port;
+  config['selenium_host'] = nightwatch_config.webdriver.host;
+  config['selenium_port'] = nightwatch_config.webdriver.port;
   config['desiredCapabilities'] = config['desiredCapabilities'] || {};
   for(var j in nightwatch_config.common_capabilities){
     config['desiredCapabilities'][j] = config['desiredCapabilities'][j] || nightwatch_config.common_capabilities[j];
