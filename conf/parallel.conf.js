@@ -21,13 +21,11 @@ nightwatch_config = {
         browser: "chrome"
       }
     },
-    // disabling firefox because of
-    // https://github.com/nightwatchjs/nightwatch/issues/2046
-    // firefox: {
-    //   desiredCapabilities: {
-    //     browser: "firefox"
-    //   }
-    // },
+    firefox: {
+      desiredCapabilities: {
+        browser: "firefox"
+      }
+    },
     safari: {
       desiredCapabilities: {
         browser: "safari"
