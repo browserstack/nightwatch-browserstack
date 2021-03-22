@@ -8,7 +8,7 @@ nightwatch_config = {
   },
 
   common_capabilities: {
-    'build': 'nightwatch-browserstack',
+    'build': 'browserstack-build-1',
     'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
     'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
     'browserstack.debug': true
