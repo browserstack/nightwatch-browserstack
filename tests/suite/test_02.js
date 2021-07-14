@@ -1,5 +1,5 @@
 module.exports = {
-  'Google\'s Search Functionality' : function (browser) {
+  "Google's Search Functionality": function (browser) {
     browser.url("https://www.google.com");
     browser.setValue("input[name=q]", ["BrowserStack 02", browser.Keys.ENTER]); // this submits on desktop browsers
     browser.pause(1000);
@@ -10,5 +10,5 @@ module.exports = {
     });
     browser.expect.title().to.match(/BrowserStack 02/i);
     browser.end();
-  }
+  },
 };

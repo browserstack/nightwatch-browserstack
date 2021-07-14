@@ -10,5 +10,5 @@ module.exports = {
     });
     browser.expect.title().to.match(/BrowserStack/i);
     browser.end();
-  }
+  },
 };
