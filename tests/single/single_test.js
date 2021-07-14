@@ -1,12 +1,14 @@
 module.exports = {
-  'Google\'s Search Functionality' : function (browser) {
-    browser
-      .url('https://www.google.com/')
-      .waitForElementVisible('body', 1000)
-      .setValue('input[type=text]', 'BrowserStack')
-      .click('input[name=btnK]')
-      .pause(1000)
-      .assert.title('BrowserStack - Google Search')
-      .end();
+  "Google's Search Functionality": function (browser) {
+    browser.url("https://www.google.com");
+    browser.setValue("input[name=q]", ["BrowserStack", browser.Keys.ENTER]); // this submits on desktop browsers
+    browser.pause(1000);
+    browser.title((result) => {
+      if (!/BrowserStack/i.test(result.value)) {
+        browser.submitForm("input[name=q]"); // this helps in mobile browsers
+      }
+    });
+    browser.expect.title().to.match(/BrowserStack/i);
+    browser.end();
   }
 };
