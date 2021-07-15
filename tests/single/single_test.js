@@ -8,8 +8,7 @@ module.exports = {
         if (!/BrowserStack/i.test(result.value)) {
           browser.submitForm("input[name=q]"); // this helps in mobile browsers
         }
-      })
-      .expect.title().to.match(/BrowserStack/i);
+      }).expect.title().to.match(/BrowserStack/i);
     browser.end();
   },
 };
