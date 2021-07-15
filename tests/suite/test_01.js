@@ -1,11 +1,14 @@
 module.exports = {
-  'Google\'s Search Functionality' : function (browser) {
+  "Google's Search Functionality": function (browser) {
     browser
-      .url('https://www.google.com/ncr')
-      .waitForElementVisible('body', 1000)
-      .setValue('input[type=text]', 'BrowserStack 01\n')
+      .url("https://www.google.com")
+      .setValue("input[name=q]", ["BrowserStack 01", browser.Keys.ENTER]) // this submits on desktop browsers
       .pause(1000)
-      .assert.title('BrowserStack 01 - Google Search')
-      .end();
-  }
+      .title((result) => {
+        if (!/BrowserStack 01/i.test(result.value)) {
+          browser.submitForm("input[name=q]"); // this helps in mobile browsers
+        }
+      }).expect.title().to.match(/BrowserStack 01/i);
+    browser.end();
+  },
 };
