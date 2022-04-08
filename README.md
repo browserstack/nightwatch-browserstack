@@ -13,8 +13,8 @@
 - You can export the environment variables for the Username and Access Key of your BrowserStack account
 
   ```
-  export BROWSERSTACK_USER=<browserstack-username> &&
-  export BROWSERSTACK_KEY=<browserstack-access-key>
+  export BROWSERSTACK_USERNAME=<browserstack-username> &&
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
 
 ## Running your tests
