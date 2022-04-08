@@ -29,7 +29,7 @@ module.exports = {
     //////////////////////////////////////////////////////////////////////////////////
     browserstack: {
       selenium: {
-        host: 'hub-cloud.browserstack.com',
+        host: 'hub.browserstack.com',
         port: 443
       },
       // More info on configuring capabilities can be found on:
