@@ -47,7 +47,7 @@ module.exports = {
       disable_error_log: true,
       webdriver: {
         timeout_options: {
-          timeout: 15000,
+          timeout: 120000,
           retry_attempts: 3
         },
         keep_alive: true,
