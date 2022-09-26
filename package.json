@@ -7,7 +7,7 @@
     "test": "npm run single && npm run local && npm run parallel",
     "single": "nightwatch --test ./tests/single/single_test.js --env browserstack",
     "local": "node scripts/local.runner.js --test ./tests/local/local_test.js  --env browserstack.local ",
-    "parallel": "nightwatch --test ./tests/single/single_test.js  --env browserstack.chrome,browserstack.ie,browserstack.safari,browserstack.firefox",
+    "parallel": "nightwatch --test ./tests/single/single_test.js  --env browserstack.chrome,browserstack.edge,browserstack.firefox",
     "parallel_local": "node scripts/local.runner.js --test ./tests/local/local_test.js --env browserstack.local_firefox,browserstack.local_chrome",
     "suite": "nightwatch ./tests/suite --parallel --env browserstack.chrome"
   },
