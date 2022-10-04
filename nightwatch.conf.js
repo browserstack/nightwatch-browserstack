@@ -4,7 +4,7 @@ const bstackOptions = {
       "osVersion" : "Sierra",
       "buildName" : "browserstack-build-1",
       "sessionName" : "Selenium-4 Nodejs snippet test",
-      "source": "nightwatch:sample-master-v1.0",
+      "source": "nightwatch:sample-master:v1.0",
       "local" : "false",
       "seleniumVersion" : "4.0.0",
       userName: '${BROWSERSTACK_USERNAME}',
