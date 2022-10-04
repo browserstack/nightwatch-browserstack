@@ -39,7 +39,7 @@ module.exports = {
           userName: '${BROWSERSTACK_USERNAME}',
           accessKey: '${BROWSERSTACK_ACCESS_KEY}',
           buildName: 'browserstack-build-1',
-          source: 'nightwatch:sample-selenium-3-v1.0'
+          source: 'nightwatch:sample-selenium-3:v1.0'
         },
         browserName: 'chrome',
         browserVersion: 'latest'
