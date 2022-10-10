@@ -6,7 +6,7 @@ if(!additonalEnvironments.test_settings)
 const bstackOptions = {
   'bstack:options' : {
       "os" : "OS X",
-      "osVersion" : "Sierra",
+      "osVersion" : "Big Sur",
       "buildName" : "browserstack-build-1",
       "sessionName" : "Selenium-4 Nodejs snippet test",
       "source": "nightwatch:sample-master:v1.0",
@@ -19,22 +19,23 @@ const bstackOptions = {
 
 const browserStack = {
   webdriver: {
-      start_process: false
-    },
+    start_process: false
+  },
 
-    selenium: {
-      host: 'hub.browserstack.com',
-      port: 443
-    },
+  selenium: {
+    host: 'hub.browserstack.com',
+    port: 443
+  },
 
-    desiredCapabilities: {
-       browserName: 'chrome',
-      ...bstackOptions
-    }
+  desiredCapabilities: {
+      browserName: 'chrome',
+    ...bstackOptions
+  }
 }
 
 const nightwatchConfigs = {
   src_folders: [],
+  live_output: true,
 
   test_settings: {
     default: {
@@ -42,45 +43,45 @@ const nightwatchConfigs = {
     },
 
     browserstack:  {
-        ...browserStack
+      ...browserStack
     },
 
     "browserstack.chrome": {
       ...browserStack,
       desiredCapabilities:{
-          browserName: 'chrome',
-          ...bstackOptions
+        browserName: 'chrome',
+        ...bstackOptions
       }
     },
     "browserstack.firefox": {
       ...browserStack,
       desiredCapabilities:{
-          browserName: 'firefox',
-          ...bstackOptions
+        browserName: 'firefox',
+        ...bstackOptions
       }
     },
     "browserstack.edge": {
       ...browserStack,
       desiredCapabilities:{
-          browserName: 'Edge',
-          ...bstackOptions
+        browserName: 'Edge',
+        ...bstackOptions
       }
     },
     // capabilities to run local test on BrowserStack
     'browserstack.local': {
       ...browserStack,
       desiredCapabilities: {
-       browserName: 'chrome',
+        browserName: 'chrome',
         'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "browserstack-build-1",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "source": "nightwatch:sample-master:v1.0",
-            "local" : "true",
-            "seleniumVersion" : "4.0.0",
-            userName: '${BROWSERSTACK_USER}',
-            accessKey: '${BROWSERSTACK_KEY}',
+          "os" : "OS X",
+          "osVersion" : "Big Sur",
+          "buildName" : "browserstack-build-1",
+          "sessionName" : "Selenium-4 Nodejs snippet test",
+          "source": "nightwatch:sample-master:v1.0",
+          "local" : "true",
+          "seleniumVersion" : "4.0.0",
+          userName: '${BROWSERSTACK_USERNAME}',
+          accessKey: '${BROWSERSTACK_ACCESS_KEY}',
         },
       },
     }
