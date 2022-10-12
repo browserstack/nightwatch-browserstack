@@ -80,11 +80,10 @@ module.exports = {
       }
     },
 
-    'browserstack.ie': {
+    'browserstack.edge': {
       extends: 'browserstack',
       desiredCapabilities: {
-        browserName: 'internet explorer',
-        browserVersion: '11.0'
+        browserName: 'edge'
       }
     },
 
