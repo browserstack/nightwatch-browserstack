@@ -1,4 +1,5 @@
 const additonalEnvironments = require("./environments");
+const { getLocalIdentifier } = require("./scripts/local.runner");
 
 if(!additonalEnvironments.test_settings)
   additonalEnvironments.test_settings = {};
@@ -79,6 +80,7 @@ const nightwatchConfigs = {
           "sessionName" : "BStack nightwatch snippet",
           "source": "nightwatch:sample-master:v1.0",
           "local" : "true",
+          "localIdentifier": getLocalIdentifier(),
           "seleniumVersion" : "4.0.0",
           userName: '${BROWSERSTACK_USERNAME}',
           accessKey: '${BROWSERSTACK_ACCESS_KEY}',
