@@ -1,5 +1,5 @@
 const additonalEnvironments = require("./environments");
-const { getLocalIdentifier } = require("./scripts/local.runner");
+const { getLocalIdentifier } = require("./scripts/local-identifier");
 
 if(!additonalEnvironments.test_settings)
   additonalEnvironments.test_settings = {};
