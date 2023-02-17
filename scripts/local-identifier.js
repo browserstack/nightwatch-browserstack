@@ -1,4 +1,7 @@
 const os = require('os');
+const Configstore = require('configstore');
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
 const generateLocalIdentifier = () => {
   const formattedDate = new Intl.DateTimeFormat('en-GB', {
@@ -15,11 +18,10 @@ const generateLocalIdentifier = () => {
   return `${formattedDate}_${hostname}_${randomChars}`;
 }
 
-let localIdentifier = null;
+const config = new Configstore(packageJson.name);
+config.delete("localIdentifier")
+config.set("localIdentifier", generateLocalIdentifier());
 
 exports.getLocalIdentifier = () => {
-  if (!localIdentifier) {
-    localIdentifier = generateLocalIdentifier();
-  }
-  return localIdentifier;
+  return config.get("localIdentifier");
 }
