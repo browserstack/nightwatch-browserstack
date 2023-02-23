@@ -2,7 +2,7 @@
 
 const Nightwatch = require('nightwatch');
 const browserstack = require('browserstack-local');
-const { getLocalIdentifier } = require('./local-identifier');
+const { generateLocalIdentifier } = require('./local-identifier');
 let bs_local;
 
 try {
@@ -10,7 +10,7 @@ try {
   // Code to start browserstack local before start of test
   console.log('Connecting local');
   Nightwatch.bs_local = bs_local = new browserstack.Local();
-  bs_local.start({ key: process.env.BROWSERSTACK_ACCESS_KEY, localIdentifier: getLocalIdentifier()}, function (error) {
+  bs_local.start({ key: process.env.BROWSERSTACK_ACCESS_KEY, localIdentifier: generateLocalIdentifier()}, function (error) {
     if (error) throw error;
 
     console.log('Connected. Now testing...');
