@@ -18,6 +18,21 @@ const bstackOptions = {
   },
 }
 
+const localBstackOptions = {
+  'bstack:options' : {
+    "os" : "OS X",
+    "osVersion" : "Big Sur",
+    "buildName" : "browserstack-build-1",
+    "sessionName" : "BStack nightwatch snippet",
+    "source": "nightwatch:sample-master:v1.0",
+    "local" : "true",
+    "localIdentifier": getLocalIdentifier(),
+    "seleniumVersion" : "4.0.0",
+    userName: '${BROWSERSTACK_USERNAME}',
+    accessKey: '${BROWSERSTACK_ACCESS_KEY}',
+  },
+}
+
 const browserStack = {
   webdriver: {
     start_process: false
@@ -73,19 +88,22 @@ const nightwatchConfigs = {
       ...browserStack,
       desiredCapabilities: {
         browserName: 'chrome',
-        'bstack:options' : {
-          "os" : "OS X",
-          "osVersion" : "Big Sur",
-          "buildName" : "browserstack-build-1",
-          "sessionName" : "BStack nightwatch snippet",
-          "source": "nightwatch:sample-master:v1.0",
-          "local" : "true",
-          "localIdentifier": getLocalIdentifier(),
-          "seleniumVersion" : "4.0.0",
-          userName: '${BROWSERSTACK_USERNAME}',
-          accessKey: '${BROWSERSTACK_ACCESS_KEY}',
-        },
+        ...localBstackOptions
       },
+    },
+    'browserstack.local_chrome': {
+      ...browserStack,
+      desiredCapabilities: {
+        browserName: 'chrome',
+        ...localBstackOptions
+      }
+    },
+    'browserstack.local_firefox': {
+      ...browserStack,
+      desiredCapabilities: {
+        browserName: 'firefox',
+        ...localBstackOptions
+      }
     }
   }
 }
