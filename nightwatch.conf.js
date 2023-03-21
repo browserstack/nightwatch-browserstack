@@ -35,7 +35,12 @@ const localBstackOptions = {
 
 const browserStack = {
   webdriver: {
-    start_process: false
+    start_process: false,
+    timeout_options: {
+      timeout: 120000,
+      retry_attempts: 3
+    },
+    keep_alive: true
   },
 
   selenium: {
