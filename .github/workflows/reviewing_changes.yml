@@ -1,7 +1,7 @@
 # This job is to test different npm profiles in master branch against Pull Request raised
 # This workflow targets nightwatch
 
-name: Nightwatch Test workflow for Node from workflow_dispatch
+name: NodeJS Test workflow on workflow_dispatch
 
 on:
   workflow_dispatch:
