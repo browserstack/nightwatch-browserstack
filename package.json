@@ -16,7 +16,7 @@
     "url": "https://github.com/browserstack/nightwatch-browserstack"
   },
   "dependencies": {
-    "browserstack-local": "^1.4.8",
+    "browserstack-local": "^1.5.2",
     "configstore": "^5.0.1",
     "nightwatch": "^2.1.5"
   },
