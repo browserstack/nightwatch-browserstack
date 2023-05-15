@@ -9,7 +9,9 @@
     "local": "nightwatch --test ./tests/local/local_test.js  --env browserstack ",
     "parallel": "nightwatch --test ./tests/single/single_test.js  --env browserstack.chrome,browserstack.edge,browserstack.firefox",
     "parallel_local": "nightwatch --test ./tests/local/local_test.js --env browserstack.firefox,browserstack.chrome",
-    "suite": "nightwatch ./tests/suite --parallel --env browserstack.chrome"
+    "suite": "nightwatch ./tests/suite --parallel --env browserstack.chrome",
+    "sample-test": "npm run parallel",
+    "sample-local-test": "npm run parallel_local"
   },
   "repository": {
     "type": "git",
