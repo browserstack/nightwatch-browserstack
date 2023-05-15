@@ -19,8 +19,8 @@
 
 ## Running your tests
 
-- To run tests, run `npm run parallel`
-- To run local tests, run `npm run local`
+- To run tests, run `npm run sample-test`
+- To run local tests, run `npm run sample-local-test`
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 
