@@ -8,11 +8,10 @@ const bstackOptions = {
     "os" : "OS X",
     "osVersion" : "Big Sur",
     "buildName" : "browserstack-build-1",
-    "sessionName" : "BStack nightwatch snippet",
     "source": "nightwatch:sample-sdk:v1.0",
     "seleniumVersion" : "4.0.0",
-    userName: '${BROWSERSTACK_USERNAME}',
-    accessKey: '${BROWSERSTACK_ACCESS_KEY}',
+    userName: '${BROWSERSTACK_USERNAME}' || 'YOUR_USERNAME',
+    accessKey: '${BROWSERSTACK_ACCESS_KEY}' || 'YOUR_ACCESS_KEY',
   },
 }
 
