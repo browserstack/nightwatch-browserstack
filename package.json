@@ -18,7 +18,7 @@
   "dependencies": {
     "browserstack-local": "^1.5.2",
     "configstore": "^5.0.1",
-    "nightwatch": "^2.1.5"
+    "nightwatch": "^2.6.21"
   },
   "license": "MIT"
 }
