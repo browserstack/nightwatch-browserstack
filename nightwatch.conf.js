@@ -39,6 +39,7 @@ module.exports = {
           userName: '${BROWSERSTACK_USERNAME}',
           accessKey: '${BROWSERSTACK_ACCESS_KEY}',
           buildName: 'browserstack-build-1',
+          sessionName : "BStack nightwatch snippet",
           source: 'nightwatch:sample-selenium-3:v1.1'
         },
         browserName: 'chrome',
