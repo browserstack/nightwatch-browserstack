@@ -6,8 +6,8 @@ name: NodeJS Test workflow on workflow_dispatch
 on:
   workflow_dispatch:
     inputs:
-      pull_request_number:
-        description: 'The pull request number to build'
+      commit_sha:
+        description: 'The commit id to build'
         required: true
 
 jobs:
@@ -27,16 +27,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: refs/pull/${{ github.event.inputs.pull_request_number }}/head
-      - name: Fetch Commit SHA
-        run: |
-          git log -1 --format='%H'
-          echo "commit_sha=$(git log -1 --format='%H')" >> $GITHUB_ENV
-          echo "commit_sha=$(git log -1 --format='%H')" >> $env:GITHUB_ENV
+          ref: ${{ github.event.inputs.commit_sha }}
       - uses: actions/github-script@98814c53be79b1d30f795b907e553d8679345975
         id: status-check-in-progress
         env:
           job_name: Nightwatch Repo ${{ matrix.node }} - ${{ matrix.os }} Sample
+          commit_sha: ${{ github.event.inputs.commit_sha }}
         with:
           github-token: ${{ github.token }}
           script: |
@@ -74,6 +70,7 @@ jobs:
         env:
           conclusion: ${{ job.status }}
           job_name: Nightwatch Repo ${{ matrix.node }} - ${{ matrix.os }} Sample
+          commit_sha: ${{ github.event.inputs.commit_sha }}
         with:
           github-token: ${{ github.token }}
           script: |
