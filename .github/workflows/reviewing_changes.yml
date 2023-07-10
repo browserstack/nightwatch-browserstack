@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       commit_sha:
-        description: 'The commit id to build'
+        description: 'The full commit id to build'
         required: true
 
 jobs:
