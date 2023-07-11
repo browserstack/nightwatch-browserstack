@@ -55,14 +55,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run single tests
-        run: npm run single
+      - name: Run sample tests
+        run: npm run sample-test
 
       - name: Run local tests
-        run: npm run local
-
-      - name: Run parallel tests
-        run: npm run parallel
+        run: npm run sample-local-test
 
       - if: always()
         uses: actions/github-script@98814c53be79b1d30f795b907e553d8679345975
