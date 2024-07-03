@@ -1,35 +1,18 @@
 const additonalEnvironments = require("./environments");
-const { getLocalIdentifier } = require("./scripts/local-identifier");
 
 if(!additonalEnvironments.test_settings)
   additonalEnvironments.test_settings = {};
 
 const bstackOptions = {
   'bstack:options' : {
-      "os" : "OS X",
-      "osVersion" : "Big Sur",
-      "buildName" : "browserstack-build-1",
-      "sessionName" : "BStack nightwatch snippet",
-      "source": "nightwatch:sample-master:v1.1",
-      "local" : "false",
-      "seleniumVersion" : "4.0.0",
-      userName: '${BROWSERSTACK_USERNAME}',
-      accessKey: '${BROWSERSTACK_ACCESS_KEY}',
-  },
-}
-
-const localBstackOptions = {
-  'bstack:options' : {
     "os" : "OS X",
     "osVersion" : "Big Sur",
     "buildName" : "browserstack-build-1",
     "sessionName" : "BStack nightwatch snippet",
-    "source": "nightwatch:sample-master:v1.1",
-    "local" : "true",
-    "localIdentifier": getLocalIdentifier(),
+    "source": "nightwatch:sample-sdk:v1.0",
     "seleniumVersion" : "4.0.0",
-    userName: '${BROWSERSTACK_USERNAME}',
-    accessKey: '${BROWSERSTACK_ACCESS_KEY}',
+    userName: '${BROWSERSTACK_USERNAME}' || 'YOUR_USERNAME',
+    accessKey: '${BROWSERSTACK_ACCESS_KEY}' || 'YOUR_ACCESS_KEY',
   },
 }
 
@@ -49,7 +32,7 @@ const browserStack = {
   },
 
   desiredCapabilities: {
-      browserName: 'chrome',
+    browserName: 'chrome',
     ...bstackOptions
   }
 }
@@ -57,6 +40,10 @@ const browserStack = {
 const nightwatchConfigs = {
   src_folders: [],
   live_output: true,
+  plugins: ['@nightwatch/browserstack'],
+  '@nightwatch/browserstack': {
+    browserstackLocal: true // set true to manage browserstack local tunnel. Defaults to false.
+  },
 
   test_settings: {
     default: {
@@ -86,28 +73,6 @@ const nightwatchConfigs = {
       desiredCapabilities:{
         browserName: 'Edge',
         ...bstackOptions
-      }
-    },
-    // capabilities to run local test on BrowserStack
-    'browserstack.local': {
-      ...browserStack,
-      desiredCapabilities: {
-        browserName: 'chrome',
-        ...localBstackOptions
-      },
-    },
-    'browserstack.local_chrome': {
-      ...browserStack,
-      desiredCapabilities: {
-        browserName: 'chrome',
-        ...localBstackOptions
-      }
-    },
-    'browserstack.local_firefox': {
-      ...browserStack,
-      desiredCapabilities: {
-        browserName: 'firefox',
-        ...localBstackOptions
       }
     }
   }
