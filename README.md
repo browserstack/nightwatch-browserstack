@@ -35,18 +35,12 @@ Understand how many parallel sessions you need by using our [Parallel Test Calcu
 You can specify proxy settings in Nightwatch by adding the `proxy` key in your `*.conf.js`
 
 ```javascript
-  test_settings: {
-    default: {
-      desiredCapabilities: {
-        // Your capabilities
-      },
-      proxy: {
-        "host": "",     // "127.0.0.1"
-        "port": "",     // "8081"
-        "protocol": ""  // "http"
-      }
-    }
-  }
+  selenium : {
+    "start_process" : false,
+    "host" : "hub-cloud.browserstack.com",
+    "port" : 80,
+    "proxy": "http://user:pass@host:port"
+  },
 ```
 
 ## Additional Resources
