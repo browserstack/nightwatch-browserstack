@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@nightwatch/browserstack": "^0.1.3",
-    "nightwatch": "^2.6.20"
+    "nightwatch": "^3.9.0"
   },
   "license": "MIT"
 }
