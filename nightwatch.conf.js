@@ -11,8 +11,8 @@ const bstackOptions = {
     "sessionName" : "BStack nightwatch snippet",
     "source": "nightwatch:sample-sdk:v1.0",
     "seleniumVersion" : "4.0.0",
-    userName: '${BROWSERSTACK_USERNAME}' || 'YOUR_USERNAME',
-    accessKey: '${BROWSERSTACK_ACCESS_KEY}' || 'YOUR_ACCESS_KEY',
+    userName: process.env.BROWSERSTACK_USERNAME || 'YOUR_USERNAME',
+    accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'YOUR_ACCESS_KEY',
   },
 }
 
@@ -78,7 +78,7 @@ const nightwatchConfigs = {
   }
 }
 
-for(let key in additonalEnvironments.test_settings) {
+for (const key of Object.keys(additonalEnvironments.test_settings)) {
   nightwatchConfigs.test_settings[key] = {
     ...browserStack,
     ...additonalEnvironments.test_settings[key]
