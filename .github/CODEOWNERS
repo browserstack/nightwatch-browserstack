@@ -1,3 +1,6 @@
-.github/** @browserstack/asi-devs
-
+# CODEOWNERS uses last-match-wins precedence, so least-specific rules must come
+# first. The broad catch-all is listed before the .github/** rule so that the
+# latter is the *last* (winning) match for workflow/config files (SDK-6071).
 * @browserstack/automate-public-repos
+
+.github/** @browserstack/asi-devs
