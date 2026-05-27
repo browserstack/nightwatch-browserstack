@@ -3,6 +3,12 @@
 
 name: NodeJS Test workflow on workflow_dispatch
 
+# Least-privilege default token scopes (SDK-6067). The job only needs to read
+# the repo (checkout) and write check runs via github-script.
+permissions:
+  contents: read
+  checks: write
+
 on:
   workflow_dispatch:
     inputs:
@@ -53,7 +59,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run sample tests
         run: npm run sample-test
