@@ -78,7 +78,7 @@ const nightwatchConfigs = {
   }
 }
 
-for(let key in additonalEnvironments.test_settings) {
+for (const key of Object.keys(additonalEnvironments.test_settings)) {
   nightwatchConfigs.test_settings[key] = {
     ...browserStack,
     ...additonalEnvironments.test_settings[key]
