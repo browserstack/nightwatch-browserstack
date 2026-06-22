@@ -21,5 +21,8 @@
     "@nightwatch/browserstack": "^0.1.3",
     "nightwatch": "^2.6.20"
   },
+  "overrides": {
+    "serialize-javascript": "^7.0.3"
+  },
   "license": "MIT"
 }

@@ -78,11 +78,11 @@ const nightwatchConfigs = {
   }
 }
 
-for(let key in additonalEnvironments.test_settings) {
+Object.keys(additonalEnvironments.test_settings).forEach((key) => {
   nightwatchConfigs.test_settings[key] = {
     ...browserStack,
     ...additonalEnvironments.test_settings[key]
   };
-}
+});
 
 module.exports = nightwatchConfigs;

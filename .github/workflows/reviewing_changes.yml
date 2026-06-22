@@ -7,8 +7,11 @@ on:
   workflow_dispatch:
     inputs:
       commit_sha:
-        description: 'The full commit id to build'
+        description: 'The full 40-character commit SHA on master to build'
         required: true
+
+permissions:
+  contents: read
 
 jobs:
   comment-run:
@@ -20,14 +23,38 @@ jobs:
         node: ['14', '16', '18']
         os: [ macos-latest, windows-latest, ubuntu-latest ]
     name: Nightwatch Repo ${{ matrix.node }} - ${{ matrix.os }} Sample
-    env:
-      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    permissions:
+      contents: read
+      checks: write
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Validate commit_sha format
+        env:
+          COMMIT_SHA: ${{ github.event.inputs.commit_sha }}
+        shell: bash
+        run: |
+          if [[ ! "$COMMIT_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::commit_sha must be a 40-character lowercase hex SHA (got: $COMMIT_SHA)"
+            exit 1
+          fi
+
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           ref: ${{ github.event.inputs.commit_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify commit_sha is reachable from master
+        env:
+          COMMIT_SHA: ${{ github.event.inputs.commit_sha }}
+        shell: bash
+        run: |
+          git fetch origin master:refs/remotes/origin/master
+          if ! git merge-base --is-ancestor "$COMMIT_SHA" origin/master; then
+            echo "::error::commit_sha $COMMIT_SHA is not an ancestor of origin/master; refusing to run with attacker-controlled refs"
+            exit 1
+          fi
+
       - uses: actions/github-script@98814c53be79b1d30f795b907e553d8679345975
         id: status-check-in-progress
         env:
@@ -48,17 +75,23 @@ jobs:
               console.log('Failed to create check run')
             }
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run sample tests
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: npm run sample-test
 
       - name: Run local tests
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: npm run sample-local-test
 
       - if: always()
