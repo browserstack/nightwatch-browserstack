@@ -1,3 +1,4 @@
+<!-- test comment for sanity PR -->
 # nightwatch-browserstack
 
 [Nightwatch](http://nightwatchjs.org/) Integration with BrowserStack.
